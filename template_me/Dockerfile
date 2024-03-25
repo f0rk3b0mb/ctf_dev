@@ -7,18 +7,19 @@ RUN apk update && apk add --no-cache nginx
 # Set up Flask app
 WORKDIR /app
 
-# Install Flask and other Python dependencies
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Flask app code into the container
-COPY . .
+COPY challenge .
+
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Nginx configuration
 COPY configs/nginx.conf /etc/nginx/nginx.conf
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
+
+COPY flag.txt /flag.txt
 
 # Expose ports
 EXPOSE 80 

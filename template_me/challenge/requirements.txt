@@ -1,6 +1,5 @@
 flask
 flask-bcrypt
 flask-sqlalchemy
-reportlab
 cryptography
  
