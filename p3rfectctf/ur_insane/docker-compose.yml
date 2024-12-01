@@ -1,0 +1,32 @@
+version: "3"
+services:
+  web:
+   image: vulhub/ffmpeg:2.8.4-with-php
+   command: php -S 0.0.0.0:8080 -t /var/www/html
+   volumes:
+     - ./Machine2/www:/var/www/html
+     - ./Machine2/flag.txt:/flag.txt
+   #ports:
+   # - "8081:8080"
+      
+  
+  flask:
+   image: vulhub/flask:1.1.1
+   command: python3 /app/app.py
+   volumes:
+    - ./Machine1/src:/app
+    - ./Machine1/flag.txt:/flag.txt
+   ports:
+  #  - "8000"
+
+  gitea:
+   image: vulhub/gitea:1.4.0
+   ports:
+    - "3000:3000"
+    - "2022:22"
+   volumes:
+      - ./Machine3/config/gitea:/data
+      - ./Machine3/flag.txt:/flag.txt
+      - ./Machine3/message.txt:/opt/message.txt
+   restart: unless-stopped
+

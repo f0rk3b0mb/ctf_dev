@@ -1,0 +1,4 @@
+#TODO
+
+
+- shutdown the other 2 servers (i have trouble finding them) :)
